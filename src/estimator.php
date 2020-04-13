@@ -25,7 +25,7 @@ function covid19ImpactEstimator($data)
 }
 
 
-$data ='{
+/*$data ='{
   region: {
   name: "Africa",
   avgAge: 19.7,
@@ -38,7 +38,7 @@ $data ='{
   population: 66622705,
   totalHospitalBeds: 1380614
   }';
-covid19ImpactEstimator($data);
+covid19ImpactEstimator($data);*/
 
 
 
