@@ -5,9 +5,7 @@ require_once("severeImpact.php");
 
 function covid19ImpactEstimator($data)
 {
-    // Convert to object
-    $jsonArray = array();
-
+    
     $reportedCases = $data['reportedCases'];
     $periodType = $data['periodType'];
     $timeToElapse = $data['timeToElapse'];
@@ -20,14 +18,9 @@ function covid19ImpactEstimator($data)
     $severeImpact = new SevereImpact($reportedCases, $periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation );
 
     $estimatorJson['data'] =  $data;
-    $estimatorJson['impact'] =  $impact;
-    $estimatorJson['severeImpact'] =  $severeImpact;
-    /*[
-      "data" =>$data,
-      "impact"=> $impact,
-      "severeImpact"=>$severeImpact
-    ];*/
-    //array_push($jsonArray, json_encode($estimatorJson));
+    $estimatorJson['impact'] =  $impact->getArray();
+    $estimatorJson['severeImpact'] =  $severeImpact-> getArray();
+  
     return  $estimatorJson ; //*/
  
 }

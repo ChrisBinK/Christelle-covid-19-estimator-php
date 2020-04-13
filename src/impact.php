@@ -54,7 +54,18 @@ Class Impact implements JsonSerializable
        
     }
 
-   
+    public function getArray(){
+        $arrayImpact = null;
+        $arrayImpact ['currentlyInfected'] = $this->currentlyInfected;
+        $arrayImpact ['infectionsByRequestedTime'] = $this->infectionsByRequestedTime;
+        $arrayImpact ['severeCasesByRequestedTime'] = $this->severeCasesByRequestedTime;
+        $arrayImpact ['hospitalBedsByRequestedTime'] = $this->hospitalBedsByRequestedTime;
+        $arrayImpact ['casesForICUByRequestedTime'] = $this->casesForICUByRequestedTime;
+        $arrayImpact ['casesForVentilatorsByRequestedTime'] = $this->casesForVentilatorsByRequestedTime;
+        $arrayImpact ['dollarsInFlight'] = $this->dollarsInFlight;
+        return $arrayImpact;
+
+    }
 
     public function jsonSerialize() {
         return [
