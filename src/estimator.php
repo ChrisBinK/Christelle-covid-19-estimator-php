@@ -11,7 +11,7 @@ function covid19ImpactEstimator($data)
 
   foreach($data  as $item){
 
-      $dataObject  =  json_decode($item['days']);
+      $dataObject  =  json_decode($item);
       $impact = new Impact($dataObject);
       $severeImpact = new SevereImpact($dataObject);
   
