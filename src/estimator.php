@@ -19,9 +19,9 @@ function covid19ImpactEstimator($data)
     $impact = new Impact($reportedCases, $periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation );
     $severeImpact = new SevereImpact($reportedCases, $periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation );
 
-    $estimatorJson['data'] =  $impact;
+    $estimatorJson['data'] =  $data;
     $estimatorJson['impact'] =  $impact;
-    $estimatorJson['severeImpact'] =  $impact;
+    $estimatorJson['severeImpact'] =  $severeImpact;
     /*[
       "data" =>$data,
       "impact"=> $impact,
