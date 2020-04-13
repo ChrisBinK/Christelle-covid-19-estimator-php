@@ -7,7 +7,7 @@ function covid19ImpactEstimator($data)
 {
   // Convert to object
   $jsonArray = array();
-  /*$dataObject  =  $data; //json_decode($data[0]);
+  $dataObject  =  $data['days']; //json_decode($data[0]);
   $impact = new Impact($dataObject);
   $severeImpact = new SevereImpact($dataObject);
 
@@ -15,9 +15,10 @@ function covid19ImpactEstimator($data)
     "data" =>$dataObject,
     "impact"=> $impact,
     "severeImpact"=>$severeImpact
-  ];*/
+  ];
+  echo $estimatorJson;
   
-  foreach($data  as $array){
+  /*foreach($data  as $array){
 
     foreach ($array as $item){
       $dataObject  =  json_decode($item);
