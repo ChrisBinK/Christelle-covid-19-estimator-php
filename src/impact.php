@@ -37,15 +37,16 @@ Class Impact implements JsonSerializable
     }
     public function calculateInfectionByRequestedTime($periodType, $timeToElapse){
         $factor = 0;
-        if(trim(strtolower($periodType)) =="days"){
+     
+        if(strtolower($periodType)=="days"){
             $this->numberOfDays = $timeToElapse;
             $factor =  (int)  $this->numberOfDays / 3;     
         }
-        if(trim(strtolower($periodType)) =="weeks"){
+        if(strtolower($periodType) =="weeks"){
             $this->numberOfDays = $timeToElapse * 7;  // cause there are  7 days in a week
             $factor =  (int) $this->numberOfDays / 3; // calculate the factor
         }
-        if(trim(strtolower($periodType))=="months"){
+        if((strtolower($periodType)=="months"){
             //  Assume each month has  30 days
             $this->numberOfDays = $timeToElapse *  30;  // Calculate the number of days from the months in timeToElapse
             $factor =  (int)$this->numberOfDays / 3;
