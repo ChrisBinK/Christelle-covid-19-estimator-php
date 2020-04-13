@@ -18,21 +18,21 @@ Class Impact implements JsonSerializable
      * Constructor to initialse the object
      * 
      */
-    public function __construct($data){
-        $this->currentlyInfected =  $data->reportedCases * 10;
-        $this->estimate($data);
+    public function __construct($reportedCases, $periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation){
+        $this->currentlyInfected =  $reportedCases * 10;
+        $this->estimate($periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation);
     }
 
-    public function estimate($data){
+    public function estimate($periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation){
         // calculate infection by requested time
-        $this->infectionsByRequestedTime = (int) $this->calculateInfectionByRequestedTime($data->periodType, $data->timeToElapse);
+        $this->infectionsByRequestedTime = (int) $this->calculateInfectionByRequestedTime($periodType, $timeToElapse);
 
         $this->severeCasesByRequestedTime = (int) $this->infectionsByRequestedTime * (15 / 100);
-        $this->hospitalBedsByRequestedTime = (int)  $data->totalHospitalBeds * (35/100) - $this->severeCasesByRequestedTime ;
+        $this->hospitalBedsByRequestedTime = (int)  $totalHospitalBeds * (35/100) - $this->severeCasesByRequestedTime ;
         $this->casesForICUByRequestedTime = (int) $this->infectionsByRequestedTime * (5/100);
         $this->casesForVentilatorsByRequestedTime = (int)  $this->infectionsByRequestedTime * (2/100);
    
-        $this->dollarsInFlight =  $this->infectionsByRequestedTime * $data->region->avgDailyIncomePopulation * $data->region->avgDailyIncomeInUSD *  $this->numberOfDays; // I have conerted the days  or monh timeToElapse to days
+        $this->dollarsInFlight =  $this->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD *  $this->numberOfDays; // I have conerted the days  or monh timeToElapse to days
       
     }
     public function calculateInfectionByRequestedTime($periodType, $timeToElapse){
