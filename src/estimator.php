@@ -19,13 +19,16 @@ function covid19ImpactEstimator($data)
     $impact = new Impact($reportedCases, $periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation );
     $severeImpact = new SevereImpact($reportedCases, $periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation );
 
-    $estimatorJson = [
+    $estimatorJson['data'] =  $impact;
+    $estimatorJson['impact'] =  $impact;
+    $estimatorJson['severeImpact'] =  $impact;
+    /*[
       "data" =>$data,
       "impact"=> $impact,
       "severeImpact"=>$severeImpact
-    ];
-    array_push($jsonArray, json_encode($estimatorJson));
-    return $jsonArray ; //*/
+    ];*/
+    //array_push($jsonArray, json_encode($estimatorJson));
+    return  $estimatorJson ; //*/
  
 }
 
