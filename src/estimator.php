@@ -13,8 +13,8 @@ function covid19ImpactEstimator($data)
     $timeToElapse = $data['timeToElapse'];
     $totalHospitalBeds = $data['totalHospitalBeds'];
     $population = $data['population'];
-    $avgDailyIncomeInUSD = $data['region']->avgDailyIncomeInUSD;
-    $avgDailyIncomePopulation =  $data['region']->avgDailyIncomePopulation;
+    $avgDailyIncomeInUSD = $data['region']['avgDailyIncomeInUSD'];
+    $avgDailyIncomePopulation =  $data['region']['avgDailyIncomePopulation'];
     
     //$dataObject  = json_decode($reportedCases, $periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation );
     $impact = new Impact($reportedCases, $periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation );
