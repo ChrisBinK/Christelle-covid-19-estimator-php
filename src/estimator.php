@@ -9,9 +9,8 @@ function covid19ImpactEstimator($data)
   $jsonArray = array();
   
 
-  foreach($data  as $item){
-    foreach($item  as $d){
-      $dataObject  = $d ;//json_decode($d);
+  
+      $dataObject  = json_decode($data);
       $impact = new Impact($dataObject);
       $severeImpact = new SevereImpact($dataObject);
   
@@ -20,16 +19,32 @@ function covid19ImpactEstimator($data)
         "impact"=> $impact,
         "severeImpact"=>$severeImpact
       ];
-      array_push($jsonArray,json_encode($estimatorJson));
+      //array_push($jsonArray,json_encode($estimatorJson));
     
-    }
+    
    
    
-  }
+
   
   return $jsonArray; //*/
  
 }
+
+
+$data ='{
+  region: {
+  name: "Africa",
+  avgAge: 19.7,
+  avgDailyIncomeInUSD: 5,
+  avgDailyIncomePopulation: 0.71
+  },
+  periodType: "days",
+  timeToElapse: 58,
+  reportedCases: 674,
+  population: 66622705,
+  totalHospitalBeds: 1380614
+  }';
+covid19ImpactEstimator($data);
 
 
 
