@@ -25,7 +25,7 @@ Class Impact implements JsonSerializable
 
     public function estimate($periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation){
         // calculate infection by requested time
-        $this->infectionsByRequestedTime = (int) $this->calculateInfectionByRequestedTime($periodType, $timeToElapse);
+        $this->infectionsByRequestedTime =  $this->calculateInfectionByRequestedTime($periodType, $timeToElapse);
 
         $this->severeCasesByRequestedTime = (int) $this->infectionsByRequestedTime * (15 / 100);
         $this->hospitalBedsByRequestedTime = (int)  $totalHospitalBeds * (35/100) - $this->severeCasesByRequestedTime ;
@@ -37,15 +37,15 @@ Class Impact implements JsonSerializable
     }
     public function calculateInfectionByRequestedTime($periodType, $timeToElapse){
         $factor = 0;
-        if($periodType =="days"){
+        if(trim(strtolower($periodType)) =="days"){
             $this->numberOfDays = $timeToElapse;
-            $factor =  (int) $timeToElapse / 3;     
+            $factor =  (int)  $this->numberOfDays / 3;     
         }
-        if($periodType =="weeks"){
-            $this->numberOfDays = $timeToElapse * 7;  // cause there are & days in a week
-            $factor =  (int) $this->numberOfDays / 3; // calulate the factor
+        if(trim(strtolower($periodType)) =="weeks"){
+            $this->numberOfDays = $timeToElapse * 7;  // cause there are  7 days in a week
+            $factor =  (int) $this->numberOfDays / 3; // calculate the factor
         }
-        if($periodType =="months"){
+        if(trim(strtolower($periodType))=="months"){
             //  Assume each month has  30 days
             $this->numberOfDays = $timeToElapse *  30;  // Calculate the number of days from the months in timeToElapse
             $factor =  (int)$this->numberOfDays / 3;

@@ -9,7 +9,6 @@ Class SevereImpact extends Impact
       
         $this->currentlyInfected  =   $reportedCases * 50;
         $this->estimate( $periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation);
-
     }
 
 }
