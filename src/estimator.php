@@ -6,6 +6,7 @@ require_once("severeImpact.php");
 function covid19ImpactEstimator($data)
 {
   // Convert to object
+  $jsonArray = array();
   foreach($data  as $d){
     $dataObject  =  json_decode($data);
     $impact = new Impact($dataObject);
@@ -16,11 +17,11 @@ function covid19ImpactEstimator($data)
       "impact"=> $impact,
       "severeImpact"=>$severeImpact
     ];
-    return  json_encode($estimatorJson);
+    array_push($jsonArray,json_encode($estimatorJson));
   
   }
   
-  
+  return $jsonArray;
 
   
 }
