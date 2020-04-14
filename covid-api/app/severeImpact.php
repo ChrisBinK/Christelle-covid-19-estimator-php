@@ -1,7 +1,7 @@
 <?php
 
-require_once("impact.php");
 
+namespace App;
 Class SevereImpact extends Impact
 {
     

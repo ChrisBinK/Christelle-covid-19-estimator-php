@@ -1,6 +1,8 @@
 <?php
 
-Class Impact implements JsonSerializable
+namespace App;
+
+Class Impact 
 {
     private $className = 'impact';
     protected $hospitalBedsByRequestedTime;
@@ -70,7 +72,6 @@ Class Impact implements JsonSerializable
 
     public function jsonSerialize() {
         return [
-            
             'currentlyInfected' => $this->currentlyInfected,
             'infectionsByRequestedTime' => $this->infectionsByRequestedTime,
             'severeCasesByRequestedTime' => $this->severeCasesByRequestedTime,
