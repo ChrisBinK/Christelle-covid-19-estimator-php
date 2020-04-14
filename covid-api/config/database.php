@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+$DATABASE_URL=parse_url('postgres://buwncsoozmkgav:a4ebef4f30309faad290617c071b2a76f18d0f08b795ce6701d5507e5d0b271a@ec2-54-210-128-153.compute-1.amazonaws.com:5432/d60iqmtkkaf2to');
 
 return [
 
@@ -15,12 +16,12 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
     | Database Connections
-    |--------------------------------------------------------------------------
+    |--------------------------------------------------------------------------pgsql
     |
     | Here are each of the database connections setup for your application.
     | Of course, examples of configuring each database platform that is
@@ -65,17 +66,15 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => $DATABASE_URL["host"],
+            'port' => $DATABASE_URL["port"],
+            'database' => ltrim($DATABASE_URL["path"], "/"),
+            'username' => $DATABASE_URL["user"],
+            'password' => $DATABASE_URL["pass"],
             'charset' => 'utf8',
             'prefix' => '',
-            'prefix_indexes' => true,
             'schema' => 'public',
-            'sslmode' => 'prefer',
+            'sslmode' => 'require',
         ],
 
         'sqlsrv' => [

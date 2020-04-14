@@ -11,4 +11,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('v1/on-covid-19', 'ApiController@getEstimate');
 Route::post('v1/on-covid-19/json', 'ApiController@getEstimate');
 Route::post('v1/on-covid-19/xml', 'ApiController@getEstimateXml');
-Route::get('v1/on-covid-19/logs', 'ApiController@getEstimate');
+Route::get('v1/on-covid-19/logs', 'ApiController@getAllLogs()');
