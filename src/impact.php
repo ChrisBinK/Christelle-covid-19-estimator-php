@@ -40,18 +40,18 @@ Class Impact implements JsonSerializable
         $periodType = strtolower(trim($periodType));
         if($periodType =="days"){
             $this->numberOfDays = $timeToElapse;
-            $factor =  (int)  $this->numberOfDays / 3;     
+            $factor =  (int) ( $this->numberOfDays / 3);     
         }
         if( $periodType =="weeks"){
             $this->numberOfDays = $timeToElapse * 7;  // cause there are  7 days in a week
-            $factor =  (int) $this->numberOfDays / 3; // calculate the factor
+            $factor =  (int) ($this->numberOfDays / 3); // calculate the factor
         }
         if($periodType =="months"){
             //  Assume each month has  30 days
             $this->numberOfDays = $timeToElapse *  30;  // Calculate the number of days from the months in timeToElapse
-            $factor =  (int)$this->numberOfDays / 3;
+            $factor =  (int)($this->numberOfDays / 3);
         }
-        return $this->currentlyInfected * pow(2, $factor);
+        return  (int) ($this->currentlyInfected * pow(2, $factor));
        
     }
 
