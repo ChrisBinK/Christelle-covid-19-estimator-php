@@ -27,7 +27,7 @@ Class Impact implements JsonSerializable
         // calculate infection by requested time
         $this->infectionsByRequestedTime =  $this->calculateInfectionByRequestedTime($periodType, $timeToElapse);
 
-        $this->severeCasesByRequestedTime = round($this->infectionsByRequestedTime * 0.15, 0,PHP_ROUND_HALF_DOWN);
+        $this->severeCasesByRequestedTime = round($this->infectionsByRequestedTime * 0.15, PHP_ROUND_HALF_DOWN);
         $this->hospitalBedsByRequestedTime = (int)  round($totalHospitalBeds * (35/100) - $this->severeCasesByRequestedTime,0 );
         $this->casesForICUByRequestedTime = (int) round($this->infectionsByRequestedTime * (5/100), 0);
         $this->casesForVentilatorsByRequestedTime = (int) round ($this->infectionsByRequestedTime * (2/100),0);
