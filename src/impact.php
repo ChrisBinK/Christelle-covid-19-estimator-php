@@ -19,7 +19,7 @@ Class Impact implements JsonSerializable
      * 
      */
     public function __construct($reportedCases, $periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation){
-        $this->currentlyInfected =  $reportedCases * 10;
+        $this->currentlyInfected = (int)  $reportedCases * 10;
         $this->estimate($periodType,$timeToElapse, $totalHospitalBeds,$population, $avgDailyIncomeInUSD,$avgDailyIncomePopulation);
     }
 
@@ -37,7 +37,7 @@ Class Impact implements JsonSerializable
     }
     public function calculateInfectionByRequestedTime($periodType, $timeToElapse){
         $factor = 0;
-     
+        $periodType = strtolower(trim($periodType));
         if($periodType =="days"){
             $this->numberOfDays = $timeToElapse;
             $factor =  (int)  $this->numberOfDays / 3;     
