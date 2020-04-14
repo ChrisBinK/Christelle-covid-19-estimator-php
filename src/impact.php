@@ -27,12 +27,12 @@ Class Impact implements JsonSerializable
         // calculate infection by requested time
         $this->infectionsByRequestedTime =  $this->calculateInfectionByRequestedTime($periodType, $timeToElapse);
 
-        $this->severeCasesByRequestedTime =((int) round($this->infectionsByRequestedTime * 0.15));
-        $this->hospitalBedsByRequestedTime = (int)  round($totalHospitalBeds * (35/100) - $this->severeCasesByRequestedTime );
-        $this->casesForICUByRequestedTime = (int) round($this->infectionsByRequestedTime * (5/100));
-        $this->casesForVentilatorsByRequestedTime = (int) round ($this->infectionsByRequestedTime * (2/100));
+        $this->severeCasesByRequestedTime = round($this->infectionsByRequestedTime * 0.15,0);
+        $this->hospitalBedsByRequestedTime = (int)  round($totalHospitalBeds * (35/100) - $this->severeCasesByRequestedTime,0 );
+        $this->casesForICUByRequestedTime = (int) round($this->infectionsByRequestedTime * (5/100), 0);
+        $this->casesForVentilatorsByRequestedTime = (int) round ($this->infectionsByRequestedTime * (2/100),0);
    
-        $this->dollarsInFlight =  round($this->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD *  $this->numberOfDays); // I have conerted the days  or monh timeToElapse to days
+        $this->dollarsInFlight =  round($this->infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD *  $this->numberOfDays, 0); // I have conerted the days  or monh timeToElapse to days
       
     }
     public function calculateInfectionByRequestedTime($periodType, $timeToElapse){
