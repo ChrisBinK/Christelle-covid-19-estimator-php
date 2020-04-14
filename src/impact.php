@@ -32,7 +32,7 @@ Class Impact implements JsonSerializable
         $this->casesForICUByRequestedTime = floor($this->infectionsByRequestedTime * (5/100));
         $this->casesForVentilatorsByRequestedTime = floor(($this->infectionsByRequestedTime * (2/100)));
    
-        $this->dollarsInFlight = floor ($this->infectionsByRequestedTime * $avgDailyIncomeInUSD);//$avgDailyIncomePopulation) ;//* $avgDailyIncomeInUSD * $timeToElapse; //$this->numberOfDays; // I have conerted the days  or monh timeToElapse to days
+        $this->dollarsInFlight = floor( ($this->infectionsByRequestedTime * $avgDailyIncomeInUSD)/ $numberOfDays);//$avgDailyIncomePopulation) ;//* $avgDailyIncomeInUSD * $timeToElapse; //$this->numberOfDays; // I have conerted the days  or monh timeToElapse to days
       
     }
     public function calculateInfectionByRequestedTime($periodType, $timeToElapse){
